@@ -317,17 +317,44 @@ export async function apiListAnswers(submissionId: string): Promise<{ answers: A
 
 /* ─── PDF ─── */
 
-export async function apiGeneratePDF(submissionId: string): Promise<{ html: string | null; filename: string | null; error: Error | null }> {
+/* ─── PDF ─── */
+
+export async function apiGeneratePDF(
+  submissionId: string
+): Promise<{
+  html: string | null;
+  filename: string | null;
+  error: Error | null;
+}> {
   try {
-    const pdfUrl = `${API_URL.replace("/api", "/generate-answer-pdf")}?submission_id=${submissionId}`;
     const token = await getToken();
-    const res = await fetch(pdfUrl, {
-      headers: token ? { "Authorization": `Bearer ${token}` } : {},
-    });
+
+    const res = await fetch(
+      `${API_URL}/generate-answer-pdf?submission_id=${submissionId}`,
+      {
+        method: "GET",
+        headers: {
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+      }
+    );
+
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "PDF generation failed");
-    return { html: data.html, filename: data.filename, error: null };
+
+    if (!res.ok) {
+      throw new Error(data.error || "PDF generation failed");
+    }
+
+    return {
+      html: data.html,
+      filename: data.filename,
+      error: null,
+    };
   } catch (e) {
-    return { html: null, filename: null, error: e as Error };
+    return {
+      html: null,
+      filename: null,
+      error: e as Error,
+    };
   }
-}
+} this is corrected version ?
