@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build:web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  EXPO_PUBLIC_SUPABASE_URL = "https://tyofxhsxivlosnsgzqsk.supabase.co"
+  EXPO_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5b2Z4aHN4aXZsb3Nuc2d6cXNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxODYyNDIsImV4cCI6MjA5Nzc2MjI0Mn0.GYYsd_S-7VEPmCPTC8359s6L2b2H7iuo-S2_sNvzwPg"
+  EXPO_PUBLIC_API_URL = "https://tyofxhsxivlosnsgzqsk.supabase.co/functions/v1/api"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
